@@ -1,0 +1,42 @@
+public class Frequency {
+
+	public static void main(String[] args) {
+		String name = "saeed";
+		String typed = "ssaed"; 
+		
+		String original = collectElement(name,typed);
+		
+		boolean output = validRepresentation(name,original);
+		
+		System.out.print(output);
+	}
+	
+	public static boolean validRepresentation(String name,String original) {
+		
+		for(int i = 0;i < name.length();i++) {
+			if(i < name.length() && i < original.length() && name.charAt(i) == original.charAt(i)) {	
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static String collectElement(String name,String typed) {
+		
+		String str = "";
+		int i = 0;
+		for(int j = i+1;j < typed.length();j++) {
+			if(i < typed.length() && typed.charAt(i) == typed.charAt(j)) {
+				
+			}
+			else {
+				str = str + typed.charAt(i);
+				i = j;
+			}
+		}
+		str = str + typed.charAt(i);
+		return str;
+	}
+}
