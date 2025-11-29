@@ -1,0 +1,83 @@
+import java.util.*;
+public class Solution1 {
+
+	public static void main(String[] args) {
+		int[] arr = {1,2,2,3,3,3};
+		int n = arr.length;
+		int[] ans = collectElement(arr,n);
+		int count = 0;
+		for(int k = 0;k < ans.length;k++) {
+			if(ans[k] != 0) {
+				count++;
+			}
+			else {
+				break;
+			}
+		}
+		int[] answer = new int[count];
+		for(int k = 0;k < answer.length;k++) {
+			answer[k] = ans[k];
+		}
+		int[] output = countFrequency(answer,arr,count);
+		int valid = maximum(output,answer);
+		System.out.println("");
+		System.out.println(valid);
+	}
+	
+	public static int maximum(int[] output,int[] answer) {
+		int max = 0;
+		
+		for(int i = 0;i < answer.length;i++) {
+			if(answer[i] == output[i]) {
+				max = maxi(max,output[i]);
+			}
+		}
+		return (max != 0) ? max : -1;
+	}
+	
+	public static int maxi(int max,int output) {
+		int ans = 0;
+		if(output > ans) {
+			ans = output;
+		}
+		return ans;
+	}
+	
+	public static int[] countFrequency(int[] answer,int[] arr,int count) {
+		int ct = 0,j = 0,m = 0,k = 0;
+		int[] arr2 = new int[count];
+		while(j < answer.length) {
+			for(int i = k;i < arr.length;i++) {       
+				int val = arr[i];
+				if(answer[j] == val) {
+					ct++;
+				}
+				else {
+					k = i;
+					break;
+				}
+			}
+			arr2[m] = ct;
+			m++;
+			j++;
+			ct = 0;
+		}
+		return arr2;
+	}
+	public static int[] collectElement(int[] arr,int n) {
+		
+		int[] arr1 = new int[20];
+		int i = 0, m = 0;
+		for(int j = i+1;j < arr.length;j++) {
+			if(i < arr.length && arr[i] == arr[j]) {
+				
+			}
+			else {
+				arr1[m++] = arr[i];
+				i = j;
+			}
+		}
+		arr1[m++] = arr[i];
+		return arr1;
+	}
+}
