@@ -1,0 +1,55 @@
+public class Solution {
+	public static void main(String[] args) {
+		int[] current = {0,8,5,2};
+		int[] target = {9,0,2,5};
+		
+		int store = 0, answer = 0, forward = 0, reverse = 0, j = 0;
+		
+		int[] fixed = {1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9};
+		while(j < current.length) {
+			int  mid = fixed.length / 2;
+			for(int i = mid;i < fixed.length;i++) {
+				if(fixed[i] == current[j]) {
+					store = i;
+					break;
+				}
+			}
+			for(int i = store;i < fixed.length;i++) {
+				if(fixed[i] == target[j]) {
+					break;
+				}
+				else {
+					forward++;
+				}
+			}
+			
+			for(int i = store;i >= 0;i--) {
+				if(fixed[i] == target[j]) {
+					break;
+				}
+				else {
+					reverse++;
+				}
+			}
+			
+			int output = findMinTraversal(forward,reverse);
+			j++;
+			forward = 0;
+			reverse = 0;
+			answer = answer + output;
+		}
+		
+		System.out.print(answer);
+	}
+	
+	public static int findMinTraversal(int forward,int reverse) { 
+		int ans = 0;
+		if(reverse < forward) {  
+			ans = reverse;
+		}
+		else {
+			ans = forward;
+		}
+		return ans;
+	}
+}
