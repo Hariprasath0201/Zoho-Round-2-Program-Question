@@ -1,0 +1,116 @@
+public class SubClass {
+	public static void main(String[] args) {
+		int[] arr = {6,4,7,13,4,6,4,4,13,4,6};  // output -> {4,4,4,4,4,6,6,6,13,13,7}
+		int n = arr.length;                     // -> 5, 3, 2 , 1 (decreasing order)
+		int[] ans = collectElement(arr,n);
+		int count = 0;
+		for(int i = 0;i < ans.length;i++) {
+			if(ans[i] != 0) {
+				count++;
+			}
+		}
+		int[] arr2 = new int[count];
+		for(int i = 0;i < arr2.length;i++) {
+			arr2[i] = ans[i];
+		}
+		int[] arr4 = countFrequency(arr2,arr);
+		
+		sortDescendingOrder(arr4,arr2);
+		
+		/*System.out.println("\nAfter sort arr2");
+		
+		for(int i = 0;i < arr2.length;i++) {
+			System.out.print(arr2[i]+ " ");
+		}
+		
+		System.out.println("\nAfter sort");
+		
+		for(int i = 0;i < arr4.length;i++) {
+			System.out.print(arr4[i]+ " ");
+		}
+		*/
+		int counting = fun(arr4);
+		
+		int[] output = new int[counting];
+		
+		int[] finalValue = printing(arr2,arr4,output);
+		
+		System.out.println("\n");
+		
+		for(int i = 0;i < finalValue.length;i++) {
+			System.out.print(finalValue[i]+ " ");
+		}
+		
+	}
+	
+	public static int[] printing(int[] arr2,int[] arr4,int[] output) {
+		int j = 0, k = 0;
+		while(j < arr2.length) {
+			for(int i = 0;i < arr4[j];i++) {
+				output[k] = arr2[j];
+				k++;
+			}
+			j++;
+		}
+		return output;
+	}
+	
+	public static int fun(int[] arr4) {
+		int count =0;
+		for(int i = 0;i < arr4.length;i++) {
+			count = count + arr4[i];
+		}
+		return count;
+	}
+	
+	public static void sortDescendingOrder(int[] arr4,int[] arr2) {
+		for(int i = 1;i < arr4.length;i++) {
+			if(arr4[i] > arr4[i-1]) {
+				int temp = arr4[i];
+				arr4[i] = arr4[i-1];
+				arr4[i-1] = temp;
+				
+				int temp1 = arr2[i];
+				arr2[i] = arr2[i-1];
+				arr2[i-1] = temp1;
+			}
+		}
+	}
+	public static int[] countFrequency(int[] arr2, int[] arr) {
+		int[] arr3 = new int[arr2.length];
+		int j = 0,cnt = 0, m = 0;
+		while(j < arr2.length) {
+			for(int i = 0;i < arr.length;i++) {
+				if(arr2[j] == arr[i]) {
+					cnt++;
+				}
+			}
+			arr3[m++] = cnt;
+			cnt = 0;
+			j++;
+		}
+		return arr3;
+	}
+	
+	public static int[] collectElement(int[] arr,int n) {
+		
+		int[] arr1 = new int[20];
+		int m = 0;
+		for(int j = 0;j < arr.length;j++) {
+			boolean answer = fun(arr,arr1,j);
+			if(answer == true) {
+				arr1[m] = arr[j];
+				m++;
+			}
+		}
+		return arr1;
+	}
+	public static boolean fun(int[] arr,int[] arr1,int j) {          
+		for(int i = 0;i < arr1.length;i++) {                         
+			if(arr1[i] == arr[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
