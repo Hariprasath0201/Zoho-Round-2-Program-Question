@@ -1,3 +1,17 @@
+/*
+Problem states is to find maximum LuckyNumber in an array. They given an array the
+element appears exact the same in the entire array otherwise return -1.
+
+Input 1 : 
+arr = {1,2,2,3,3,3}     output : 3
+
+Input 1 : 
+arr = {2,2,3,4}     output : 2
+
+Input 1 : 
+arr = {2,2,2,3,3}     output : -1
+
+*/
 import java.util.*;
 public class Solution1 {
 
