@@ -1,3 +1,17 @@
+/*
+Scenario based problem they given a string the problem states you type something originalName in a 
+excel or other documents but you typed more than one time of the character in a string we need to
+check if it is matches return true otherwise false.
+
+Input 1 :
+name = "alex";
+typed = "aaleex"; 
+
+Input 2 :
+name = "saeed";
+typed = "ssaed"; 
+
+*/
 public class Frequency {
 
 	public static void main(String[] args) {
